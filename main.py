@@ -12,7 +12,7 @@ from forms import EditPost, NewCategory, LoginForm
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ.get("APP_SECRET_KEY")
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///my_data.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL", "sqlite:///my_data.db")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 login_manager = LoginManager(app)
