@@ -1,0 +1,17 @@
+{% include "header.html" %}
+
+<!-- Contents -->
+<div class="main-container">
+    <form method="POST" novalidate>
+        {{form.csrf_token}}
+        <div class="make-title">
+            {{form.password.label}} <br> {{form.password}}
+        </div>
+        <div class="make-submit">
+            {{ form.submit }}
+        </div>
+    </form>
+</div>
+
+
+{% include "footer.html" %}

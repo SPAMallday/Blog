@@ -1,0 +1,17 @@
+{% include "header.html" %}
+
+
+<div class="main-container">
+    <h1 class="postlist-main-title"> Make a new category </h1>
+
+    <form method="POST" novalidate>
+        {{ form.csrf_token }}
+        <div class="make-title">
+            {{ form.name.label }} <br> {{ form.name }}
+        </div>
+        {{ form.submit }}
+    </form>
+</div>
+
+
+{% include "footer.html" %}

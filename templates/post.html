@@ -1,0 +1,23 @@
+{% include "header.html" %}
+{% set post = variable_dict["selected_post"] %}
+
+<div class="post-container">
+    <div class="post-title-container">
+        <h1 class="post-title">{{ post.title }}</h1>
+        <p class="post-date">{{ post.created_at }}</p>
+    </div>
+    <hr>
+    <div class="post-body">
+        {{ post.body | safe }}
+    </div>
+</div>
+
+<script src="https://utteranc.es/client.js"
+        repo="SPAMAllday/Blog"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+{% include "footer.html" %}

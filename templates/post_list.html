@@ -1,0 +1,49 @@
+{% include "header.html" %}
+
+<div class="post-container">
+    <h1 class="postlist-main-title"> {{ variable_dict["selected_category_name"].title() }} </h1>
+    <br>
+    <table class="table align-middle">
+        {% if current_user.is_authenticated: %}
+        <tr>
+            <td>
+
+            </td>
+            <td>
+                <a class="add-postlist-link"
+                   href="{{url_for('make_post', category_id=variable_dict['selected_category_id'])}}">
+                    Add a new post</a>
+            </td>
+        </tr>
+        {% endif %}
+        {% for item in variable_dict["posts"] %}
+        <tr>
+            <td class="postlist-date-cell">
+                <p class="postlist-date">
+                    {{ item.created_at }}
+                </p>
+            </td>
+            <td>
+                <a class="postlist-content" href="{{url_for('show_certain_post', post_id=item.id)}}">
+                    <h1 class="postlist-title">{{item.title}}</h1>
+                    <p class="postlist-subtitle">{{item.subtitle}}</p>
+                </a>
+
+                {% if current_user.is_authenticated: %}
+                <div class="d-flex justify-content-end">
+
+                    <a class="btn btn-outline-primary postlist-btn" href="{{ url_for('edit_post',
+                    content_title=item.title, content_subtitle=item.subtitle, content_body=item.body,
+                    content_id=item.id, category_id=variable_dict['selected_category_id']) }}">Edit</a>
+
+                    <a class="btn btn-outline-primary postlist-btn" href="{{ url_for('delete_post',
+                    post_id=item.id, category_id=variable_dict['selected_category_id']) }}">Delete</a>
+                </div>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% include "footer.html" %}
