@@ -63,7 +63,7 @@ class User(UserMixin, db.Model):
 # db.session.commit()
 
 # use once
-# db.create_all()
+db.create_all()
 
 
 # define load_user
