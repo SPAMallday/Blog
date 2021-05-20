@@ -7,6 +7,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import func
 from sqlalchemy.orm import relationship
+from flask_migrate import Migrate
 
 from forms import EditPost, NewCategory, LoginForm
 
@@ -24,6 +25,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = uri
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 login_manager = LoginManager(app)
+migrate = Migrate(app,db)
 
 
 # Composing DB
@@ -63,7 +65,7 @@ class User(UserMixin, db.Model):
 # db.session.commit()
 
 # use once
-db.create_all()
+# db.create_all()
 
 
 # define load_user
