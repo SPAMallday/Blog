@@ -1,20 +1,20 @@
 import datetime
 import os
 
+import psycopg2
 from flask import Flask, render_template, request, redirect, url_for, abort
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import func
 from sqlalchemy.orm import relationship
-from flask_migrate import Migrate
 
 from forms import EditPost, NewCategory, LoginForm
 
 
 #To use PostgresDB in Heroku (When URI starts with postgres will replace it to postgresql)
 #flask doens't support postgres:// uri in this version
-uri = os.environ.get("DATABASE_URL?sslmode='require'", "sqlite:///my_data.db")
+uri = os.environ.get("DATABASE_URL", "sqlite:///my_data.db")
 if uri.startswith("postgres://"):
     uri = uri.replace("postgres://", "postgresql://", 1)
 
@@ -25,7 +25,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = uri
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 login_manager = LoginManager(app)
-migrate = Migrate(app,db)
+connection = psycopg2.connect(uri, sslmode='require')
 
 
 # Composing DB
