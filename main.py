@@ -12,12 +12,18 @@ from sqlalchemy.orm import relationship
 from forms import EditPost, NewCategory, LoginForm
 
 
-#To use PostgresDB in Heroku (When URI starts with postgres will replace it to postgresql)
+#To use PostgreSQL in Heroku (When URI starts with postgres will replace it to postgresql)
 #flask doens't support postgres:// uri in this version
 uri = os.environ.get("DATABASE_URL?sslmode='require'", "sqlite:///my_data.db")
 if uri.startswith("postgres://"):
     uri = uri.replace("postgres://", "postgresql://", 1)
 
+only_uri = os.environ.get("DATABASE_URL", "sqlite:///my_data.db")
+if uri.startswith("postgres://"):
+    uri = uri.replace("postgres://", "postgresql://", 1)
+
+
+connection = psycopg2.connect(only_uri, sslmode='require')
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ.get("APP_SECRET_KEY")
