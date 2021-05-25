@@ -1,7 +1,7 @@
 import datetime
 import os
 
-# import psycopg2
+import psycopg2
 from flask import Flask, render_template, request, redirect, url_for, abort
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -18,9 +18,8 @@ uri = os.environ.get("DATABASE_URL?sslmode='require'", "sqlite:///my_data.db")
 if uri.startswith("postgres://"):
     uri = uri.replace("postgres://", "postgresql://", 1)
 
-# only_uri = os.environ.get("DATABASE_URL", "sqlite:///my_data.db")
-#
-# connection = psycopg2.connect(only_uri, sslmode='require')
+only_uri = os.environ.get("DATABASE_URL", "sqlite:///my_data.db")
+connection = psycopg2.connect(only_uri, sslmode='require')
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ.get("APP_SECRET_KEY")
