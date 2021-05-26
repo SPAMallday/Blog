@@ -14,10 +14,7 @@ from forms import EditPost, NewCategory, LoginForm
 
 #To use PostgreSQL in Heroku (When URI starts with postgres will replace it to postgresql)
 #flask doens't support postgres:// uri in this version
-# uri = os.environ.get("DATABASE_URL?sslmode='require'", "sqlite:///my_data.db")
-# if uri.startswith("postgres://"):
-#     uri = uri.replace("postgres://", "postgresql://", 1)
-#
+
 # only_uri = os.environ.get("DATABASE_URL", "sqlite:///my_data.db")
 # connection = psycopg2.connect(only_uri, sslmode='require')
 
@@ -63,11 +60,11 @@ class User(UserMixin, db.Model):
 
 
 # make User instance
-# user = User()
-# user.name = "######"
-# user.password = generate_password_hash("######")
-# db.session.add(user)
-# db.session.commit()
+user = User()
+user.name = "admin"
+user.password = generate_password_hash("gozldgkwlak5619!")
+db.session.add(user)
+db.session.commit()
 
 # use once
 db.create_all()
