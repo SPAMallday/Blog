@@ -21,7 +21,7 @@ from forms import EditPost, NewCategory, LoginForm
 uri = os.environ.get("DATABASE_URL", "sqlite:///my_data.db")
 if uri.startswith("postgres://"):
     uri = uri.replace("postgres://", "postgresql://", 1)
-
+os.environ["APP_SECRET_KEY"]="LOCAL"
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ.get("APP_SECRET_KEY")
 app.config["SQLALCHEMY_DATABASE_URI"] = uri

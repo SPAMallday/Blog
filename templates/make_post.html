@@ -18,7 +18,7 @@
           rel="stylesheet">
 
     <!--  CKeditor5 Link  -->
-    <script src="{{url_for('static',filename='ckeditor5/ckeditor.js')}}"></script>
+    <script src="{{url_for('static',filename='ckeditor5/build/ckeditor.js')}}"></script>
     <script src="{{url_for('static',filename='ckeditor5/translations/ko.js')}}"></script>
 
     <!--- Custom CSS Link --->
@@ -143,7 +143,61 @@
 
                         ClassicEditor
                             .create( document.querySelector( '#editor' ), {
-                                language: {ui: 'ko', content: 'ko'}
+                                toolbar: {
+                                    items: [
+                                        'heading',
+                                        'fontFamily',
+                                        'fontSize',
+                                        'fontColor',
+                                        'fontBackgroundColor',
+                                        'bold',
+                                        'italic',
+                                        'underline',
+                                        '|',
+                                        'bulletedList',
+                                        'numberedList',
+                                        'todoList',
+                                        'alignment',
+                                        'horizontalLine',
+                                        '|',
+                                        'outdent',
+                                        'indent',
+                                        '|',
+                                        'htmlEmbed',
+                                        'codeBlock',
+                                        'specialCharacters',
+                                        'insertTable',
+                                        'blockQuote',
+                                        '|',
+                                        'imageUpload',
+                                        'imageInsert',
+                                        'mediaEmbed',
+                                        'link',
+                                        '|',
+                                        'findAndReplace',
+                                        'undo',
+                                        'redo'
+                                    ]
+                                },
+                                language: {ui: 'ko', content: 'ko'},
+                                image: {
+                                    toolbar: [
+                                        'imageTextAlternative',
+                                        'imageStyle:full',
+                                        'imageStyle:side',
+                                        'linkImage'
+                                    ]
+                                },
+                                table: {
+                                    contentToolbar: [
+                                        'tableColumn',
+                                        'tableRow',
+                                        'mergeTableCells',
+                                        'tableCellProperties',
+                                        'tableProperties'
+                                    ]
+                                },
+                                    licenseKey: '',
                             } )
 
                             .then( editor => {
