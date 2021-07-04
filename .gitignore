@@ -274,3 +274,5 @@ dist
 .pnp.*
 
 # End of https://www.toptal.com/developers/gitignore/api/flask,node
+/static/ckeditor5/sample/index.html
+/static/ckeditor5/sample/styles.css
