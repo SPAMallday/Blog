@@ -273,6 +273,9 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-# End of https://www.toptal.com/developers/gitignore/api/flask,node
+###CKEditor###
+# CKEditor Sample files
 /static/ckeditor5/sample/index.html
 /static/ckeditor5/sample/styles.css
+
+# End of https://www.toptal.com/developers/gitignore/api/flask,node
