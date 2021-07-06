@@ -5,7 +5,7 @@
   "version": "0.0.1",
   "license": "SEE LICENSE IN LICENSE.md",
   "private": true,
-  "main": "./build/ckeditor.js",
+  "main": "static/ckeditor5/build/ckeditor.js",
   "dependencies": {
     "@ckeditor/ckeditor5-alignment": "^28.0.0",
     "@ckeditor/ckeditor5-basic-styles": "^28.0.0",
@@ -75,7 +75,7 @@
     "webpack-cli": "^4.7.2"
   },
   "scripts": {
-    "build": "webpack --mode production",
+    "build": "webpack --mode production --config static/ckeditor5/webpack-config.js",
     "heroku-prebuild": "npm install"
   }
 }
