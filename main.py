@@ -23,7 +23,8 @@ if uri.startswith("postgres://"):
     uri = uri.replace("postgres://", "postgresql://", 1)
 
 app = Flask(__name__)
-app.config["SECRET_KEY"] = os.environ.get("APP_SECRET_KEY")
+# app.config["SECRET_KEY"] = os.environ.get("APP_SECRET_KEY")
+app.config["SECRET_KEY"] = "AFNLSF"
 app.config["SQLALCHEMY_DATABASE_URI"] = uri
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
@@ -196,9 +197,10 @@ def edit_post():
         return redirect(url_for("show_posts_by_category", category_id=category_id))
 
     # get data from post to set default value
-    content_title = request.args.get("content_title")
-    content_subtitle = request.args.get("content_subtitle")
-    content_body = request.args.get("content_body")
+    target_post = Post.query.get(content_id)
+    content_title = target_post.title
+    content_subtitle = target_post.subtitle
+    content_body = target_post.body
 
     form.title.data = content_title
     form.subtitle.data = content_subtitle
