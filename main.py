@@ -23,8 +23,7 @@ if uri.startswith("postgres://"):
     uri = uri.replace("postgres://", "postgresql://", 1)
 
 app = Flask(__name__)
-# app.config["SECRET_KEY"] = os.environ.get("APP_SECRET_KEY")
-app.config["SECRET_KEY"] = "AFNLSF"
+app.config["SECRET_KEY"] = os.environ.get("APP_SECRET_KEY")
 app.config["SQLALCHEMY_DATABASE_URI"] = uri
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
