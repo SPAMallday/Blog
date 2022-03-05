@@ -28,7 +28,7 @@ body {
 
 .dropdown-item {
   display: inline-block;
-  width: auto;
+  width: 100%;
   font-size: 0.9rem;
 }
 
@@ -369,8 +369,9 @@ body {
 /* copyright */
 .copyright-container {
   position: absolute;
-  width: 100%;
+  left: 50%;
   bottom: 1rem;
+  transform: translate(-50%, -50%);
 }
 
 .copyright {
