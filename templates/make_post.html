@@ -137,8 +137,7 @@
         </div>
 
         <textarea class="make-text" name="body" id="editor"></textarea>
-        <script type="text/javascript">
-                        var post_body = '{{ content_body | safe }}'
+        <script type="text/javascript" post_body = '{{ content_body | safe }}'>
 
                         ClassicEditor
                             .create( document.querySelector( '#editor' ), {
@@ -201,7 +200,7 @@
 
                             .then( editor => {
                                 {% if content_body : %}
-                                editor.setData( post_body );
+                                editor.setData( document.currentScript.getAttribute('post_body') );
                                 {% endif %}
 
                                 console.log( editor );
@@ -210,6 +209,7 @@
                             .catch( error => {
                                 console.error( error );
                             } );
+
 
         </script>
         <div class="make-submit">
