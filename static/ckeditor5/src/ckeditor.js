@@ -8,7 +8,6 @@ import AutoLink from '@ckeditor/ckeditor5-link/src/autolink.js';
 import Base64UploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/base64uploadadapter.js';
 import BlockQuote from '@ckeditor/ckeditor5-block-quote/src/blockquote.js';
 import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold.js';
-import CodeBlock from '@ckeditor/ckeditor5-code-block/src/codeblock.js';
 import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials.js';
 import FindAndReplace from '@ckeditor/ckeditor5-find-and-replace/src/findandreplace.js';
 import FontBackgroundColor from '@ckeditor/ckeditor5-font/src/fontbackgroundcolor.js';
@@ -59,7 +58,6 @@ Editor.builtinPlugins = [
 	Base64UploadAdapter,
 	BlockQuote,
 	Bold,
-	CodeBlock,
 	Essentials,
 	FindAndReplace,
 	FontBackgroundColor,

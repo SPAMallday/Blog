@@ -368,7 +368,8 @@ body {
 
 /* copyright */
 .copyright-container {
-  position: relative;
+  position: absolute;
+  width: 100%;
   bottom: 1rem;
 }
 
