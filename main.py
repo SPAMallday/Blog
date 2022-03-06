@@ -23,7 +23,8 @@ if uri.startswith("postgres://"):
     uri = uri.replace("postgres://", "postgresql://", 1)
 
 app = Flask(__name__)
-app.config["SECRET_KEY"] = os.environ.get("APP_SECRET_KEY")
+# app.config["SECRET_KEY"] = os.environ.get("APP_SECRET_KEY")
+app.config["SECRET_KEY"] = "ABC"
 app.config["SQLALCHEMY_DATABASE_URI"] = uri
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
@@ -137,7 +138,7 @@ def show_posts_by_category():
     target_category_id = request.args.get("category_id")
     variable_dict["selected_category_id"] = target_category_id
     variable_dict["selected_category_name"] = Category.query.get(target_category_id).name
-    result = Post.query.filter_by(category_id=target_category_id).order_by(getattr(Post, "created_at").desc())
+    result = Post.query.filter_by(category_id=target_category_id).order_by(getattr(Post, "id").desc())
     variable_dict["posts"] = result
     return render_template("post_list.html", variable_dict=variable_dict)
 
