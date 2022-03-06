@@ -125,7 +125,7 @@
 </nav>
 
 <!-- Contents -->
-<div class="main-container">
+<div class="make-post-container">
     <form method="POST" novalidate>
         {{form.csrf_token}}
         <div class="make-title">
@@ -136,8 +136,9 @@
             {{form.subtitle.label}} <br> {{form.subtitle}}
         </div>
 
-        <textarea class="make-text" name="body" id="editor"></textarea>
-        <script type="text/javascript" post_body = '{{ content_body | safe }}'>
+        <div class="editor-box">
+            <textarea class="make-text" name="body" id="editor"></textarea>
+            <script type="text/javascript" post_body='{{ content_body | safe }}'>
 
                         ClassicEditor
                             .create( document.querySelector( '#editor' ), {
@@ -209,8 +210,9 @@
                                 console.error( error );
                             } );
 
+            </script>
+        </div>
 
-        </script>
         <div class="make-submit">
             {{ form.submit }}
         </div>

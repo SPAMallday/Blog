@@ -303,6 +303,10 @@ body {
   width : 100%;
 }
 
+.make-post-container {
+  margin : 10%;
+}
+
 /* post page */
 .post-title-container {
   position: relative;
