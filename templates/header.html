@@ -38,12 +38,13 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
                 <!--- 페이지 navbar 강조 구분 --->
-                {% if variable_dict["page"] == "home" %}
                 {% if current_user.is_authenticated: %}
                 <li class="nav-item mx-2">
                     <a class="nav-link" href="{{ url_for('logout') }}"> Logout </a>
                 </li>
                 {% endif %}
+
+                {% if variable_dict["page"] == "home" %}
                 <li class="nav-item mx-2">
                     <a class="nav-link active" aria-current="page" href="{{url_for('home')}}">Home</a>
                 </li>
@@ -66,11 +67,6 @@
                     </ul>
                 </li>
                 {% elif variable_dict["page"] == "profile" %}
-                {% if current_user.is_authenticated: %}
-                <li class="nav-item mx-2">
-                    <a class="nav-link" href="{{ url_for('logout') }}"> Logout </a>
-                </li>
-                {% endif %}
                 <li class="nav-item mx-2">
                     <a class="nav-link" href="{{url_for('home')}}">Home</a>
                 </li>
@@ -93,11 +89,6 @@
                     </ul>
                 </li>
                 {% elif variable_dict["page"] == "posts" %}
-                {% if current_user.is_authenticated: %}
-                <li class="nav-item mx-2">
-                    <a class="nav-link" href="{{ url_for('logout') }}"> Logout </a>
-                </li>
-                {% endif %}
                 <li class="nav-item mx-2">
                     <a class="nav-link" href="{{url_for('home')}}">Home</a>
                 </li>
@@ -120,11 +111,6 @@
                     </ul>
                 </li>
                 {% else %}
-                {% if current_user.is_authenticated: %}
-                <li class="nav-item mx-2">
-                    <a class="nav-link" href="{{ url_for('logout') }}"> Logout </a>
-                </li>
-                {% endif %}
                 <li class="nav-item mx-2">
                     <a class="nav-link" href="{{url_for('home')}}">Home</a>
                 </li>
