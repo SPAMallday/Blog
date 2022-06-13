@@ -23,8 +23,7 @@ if uri.startswith("postgres://"):
     uri = uri.replace("postgres://", "postgresql://", 1)
 
 app = Flask(__name__)
-# app.config["SECRET_KEY"] = os.environ.get("APP_SECRET_KEY")
-app.config["SECRET_KEY"] = "ABC"
+app.config["SECRET_KEY"] = os.environ.get("APP_SECRET_KEY")
 app.config["SQLALCHEMY_DATABASE_URI"] = uri
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
@@ -113,7 +112,6 @@ def login_page():
         user = User.query.get("1")
         if check_password_hash(user.password, form.password.data):
             login_user(user)
-            print("OK")
             return redirect(url_for("home"))
         else:
             return abort(403)

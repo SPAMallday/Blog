@@ -37,74 +37,19 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
                 <!--- 페이지 navbar 강조 구분 --->
-                {% if variable_dict["page"] == "home" %}
                 {% if current_user.is_authenticated: %}
                 <li class="nav-item mx-2">
                     <a class="nav-link" href="{{ url_for('logout') }}"> Logout </a>
                 </li>
                 {% endif %}
                 <li class="nav-item mx-2">
-                    <a class="nav-link active" aria-current="page" href="{{url_for('home')}}">Home</a>
+                    <a id="nav-home" class="nav-link inactive" href="{{url_for('home')}}">Home</a>
                 </li>
                 <li class="nav-item mx-2">
-                    <a class="nav-link" href="{{url_for('show_profile')}}">Profile</a>
-                </li>
-                <li class="nav-item dropdown mx-2 d-flex justify-content-end dropdown-posts-custom">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown-home" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">
-                        Posts
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown-home">
-                        {% for item in variable_dict["categories"] %}
-                        <li><a class="dropdown-item" href="{{url_for('show_posts_by_category', category_id=item.id)}}">{{item.name}}
-                            ({{item.count}})</a></li>
-                        {% endfor %}
-                        {% if current_user.is_authenticated: %}
-                        <li><a class="dropdown-item" href="{{url_for('make_category')}}">New Category</a></li>
-                        {% endif %}
-                    </ul>
-                </li>
-                {% elif variable_dict["page"] == "profile" %}
-                {% if current_user.is_authenticated: %}
-                <li class="nav-item mx-2">
-                    <a class="nav-link" href="{{ url_for('logout') }}"> Logout </a>
-                </li>
-                {% endif %}
-                <li class="nav-item mx-2">
-                    <a class="nav-link" href="{{url_for('home')}}">Home</a>
-                </li>
-                <li class="nav-item mx-2">
-                    <a class="nav-link active" aria-current="page" href="{{url_for('show_profile')}}">Profile</a>
+                    <a id="nav-profile" class="nav-link inactive" href="{{url_for('show_profile')}}">Profile</a>
                 </li>
                 <li class="nav-item dropdown mx-2">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown-profile" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">
-                        Posts
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown-profile">
-                        {% for item in variable_dict["categories"] %}
-                        <li><a class="dropdown-item" href="{{url_for('show_posts_by_category', category_id=item.id)}}">{{item.name}}
-                            ({{item.count}})</a></li>
-                        {% endfor %}
-                        {% if current_user.is_authenticated: %}
-                        <li><a class="dropdown-item" href="{{url_for('make_category')}}">New Category</a></li>
-                        {% endif %}
-                    </ul>
-                </li>
-                {% elif variable_dict["page"] == "posts" %}
-                {% if current_user.is_authenticated: %}
-                <li class="nav-item mx-2">
-                    <a class="nav-link" href="{{ url_for('logout') }}"> Logout </a>
-                </li>
-                {% endif %}
-                <li class="nav-item mx-2">
-                    <a class="nav-link" href="{{url_for('home')}}">Home</a>
-                </li>
-                <li class="nav-item mx-2">
-                    <a class="nav-link" href="{{url_for('show_profile')}}">Profile</a>
-                </li>
-                <li class="nav-item dropdown mx-2">
-                    <a class="nav-link dropdown-toggle active" aria-current="page" href="#" id="navbarDropdown-posts"
+                    <a class="nav-link dropdown-toggle inactive" aria-current="page" href="#" id="navbarDropdown-posts"
                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Posts
                     </a>
@@ -118,7 +63,6 @@
                         {% endif %}
                     </ul>
                 </li>
-                {% endif %}
             </ul>
         </div>
     </div>
@@ -138,8 +82,7 @@
 
         <div class="editor-box">
             <textarea class="make-text" name="body" id="editor"></textarea>
-            <script type="text/javascript" post_body='{{ content_body | safe }}'>
-
+            <script type="text/javascript" post_body = '{{ content_body | safe }} '>
                         ClassicEditor
                             .create( document.querySelector( '#editor' ), {
                                 toolbar: {
@@ -200,7 +143,7 @@
 
                             .then( editor => {
                                 {% if content_body : %}
-                                editor.setData( document.currentScript.getAttribute('post_body') );
+                                editor.setData( document.currentScript.getAttribute("post_body") );
                                 {% endif %}
 
                                 console.log( editor );
