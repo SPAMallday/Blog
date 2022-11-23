@@ -11,9 +11,8 @@ from sqlalchemy.orm import relationship
 
 from forms import EditPost, NewCategory, LoginForm
 
-
-#To use PostgreSQL in Heroku (When URI starts with postgres will replace it to postgresql)
-#flask doens't support postgres:// uri in this version
+# To use PostgreSQL in Heroku (When URI starts with postgres will replace it to postgresql)
+# flask doens't support postgres:// uri in this version
 
 # only_uri = os.environ.get("DATABASE_URL", "sqlite:///my_data.db")
 # connection = psycopg2.connect(only_uri, sslmode='require')
@@ -50,6 +49,7 @@ class Category(db.Model):
     count = db.Column(db.Integer, nullable=False)
 
     posts = relationship("Post", back_populates="category")
+
 
 # Only admin
 class User(UserMixin, db.Model):
@@ -240,7 +240,8 @@ def make_category():
 
     return render_template("make_category.html", variable_dict=variable_dict, form=form)
 
-@app.route("/delete_category", methods=["DELETE"])
+
+@app.route("/delete_category")
 @login_required
 def delete_category():
     category_id = request.args.get("category_id")
