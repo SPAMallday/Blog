@@ -218,7 +218,7 @@ def delete_post():
 
     update_count(category_id)
 
-    return redirect(url_for("show_posts_by_category", category_id=category_id))
+    return redirect(url_for("show_posts_by_category", variable_dict=variable_dict, category_id=category_id))
 
 
 @app.route("/new_category", methods=["GET", "POST"])
@@ -239,6 +239,20 @@ def make_category():
         return redirect(url_for("show_posts_by_category", category_id=target.id))
 
     return render_template("make_category.html", variable_dict=variable_dict, form=form)
+
+@app.route("/delete_category", methods=["DELETE"])
+@login_required
+def delete_category():
+    category_id = request.args.get("category_id")
+    target_cate = Category.query.get(category_id)
+
+    db.session.delete(target_cate)
+    db.session.commit()
+
+    categories = Category.query.all()
+    variable_dict["categories"] = categories
+
+    return redirect(url_for("index.html", variable_dict=variable_dict))
 
 
 # APP run

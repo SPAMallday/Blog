@@ -2,6 +2,12 @@
 
 <div class="post-container">
     <h1 class="postlist-main-title"> {{ variable_dict["selected_category_name"].title() }} </h1>
+    {% if current_user.is_authenticated: %}
+        <div class="d-flex justify-content-end">
+            <a class="btn btn-outline-primary postlist-btn" href="{{ url_for('delete_category',
+            category_id=variable_dict['selected_category_id']) }}">Delete Category</a>
+        </div>
+    {% endif %}
     <br>
     <table class="table align-middle">
         {% if current_user.is_authenticated: %}
